@@ -8,8 +8,9 @@ The app makes use of `Local Storage` API to persist data.\
 
 #### Steps to run this project locally
 
-1.Clone this repository.\
-2.Make sure you are in the root directory of app."use 'cd' for windows"\
- 1.cd rootdirectory\
- 2.npm install\
- 3.npm start\
+1. Clone this repository.
+2. Make sure you are in the root directory of app."use 'cd' for windows"
+
+1)  cd rootdirectory
+2)  npm install
+3)  npm start
