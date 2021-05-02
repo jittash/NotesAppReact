@@ -19,8 +19,22 @@ const App = () => {
 
   const [addtoggle, setaddtoggle] = useState(true);
   const [toeditid, settoeditid] = useState(null);
+
   const [searchvalue, setsearchvalue] = useState("");
   const [searchResults, setsearchResults] = useState([]);
+
+  const [dark, setdark] = useState(false);
+
+  const themes = {
+    dark: {
+      backgroundColor: "black",
+      color: "green"
+    },
+    light: {
+      backgroundColor: "white",
+      color: "black"
+    }
+  };
 
   const addNote = (e) => {
     e.preventDefault();
@@ -105,8 +119,19 @@ const App = () => {
     }
   };
 
+  //Toggle Theme
+  const themeToggler = () => {
+    const isDark = !dark;
+    localStorage.setItem("theme", JSON.stringify(isDark));
+    setdark(isDark);
+  };
+  const theme = dark ? themes.dark : themes.light;
+
   return (
     <div className="App container my-3">
+      <div
+        style={{ backgroundColor: theme.backgroundColor, color: theme.color }}
+      >
       <Navbar Search={Search} />
       <h1 className="text-center">Welcome to React Notes App</h1>
       <div className="addNote card">
@@ -139,10 +164,21 @@ const App = () => {
             <button className="btn btn-primary" onClick={addNote}>
               Edit Note
             </button>
+            
           )}
           <button onClick={deleteAll} className="btn btn-danger">
             Clear All
           </button>
+          <button
+                onClick={themeToggler}
+                className="btn"
+                style={{
+                  background: theme.backgroundColor,
+                  color: theme.color
+                }}
+              >
+                Toggle to {!dark ? "dark" : "light"} theme
+              </button>
         </div>
       </div>
       <hr />
@@ -151,6 +187,7 @@ const App = () => {
         editNote={editNote}
         deleteNote={deleteNote}
       />
+      </div>
     </div>
   );
 };
